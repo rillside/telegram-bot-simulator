@@ -13,12 +13,12 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 
 def build():
     print("=" * 65)
-    print("🔨 Starting build of Telegram Simulator standalone executable...")
+    print("[*] Starting build of Telegram Simulator standalone executable...")
     print("=" * 65)
 
     dist_dir = ROOT_DIR / "frontend" / "dist"
     if not dist_dir.exists():
-        print("❌ Error: frontend/dist does not exist! Run 'npm run build' first.")
+        print("[ERROR] frontend/dist does not exist! Run 'npm run build' first.")
         sys.exit(1)
 
     # PyInstaller arguments
@@ -67,21 +67,21 @@ def build():
     print("Running command:", " ".join(cmd))
     res = subprocess.run(cmd, cwd=str(ROOT_DIR))
     if res.returncode != 0:
-        print("❌ Build failed with exit code:", res.returncode)
+        print("[ERROR] Build failed with exit code:", res.returncode)
         sys.exit(res.returncode)
 
     exe_path = ROOT_DIR / "dist" / "telegram-simulator.exe"
     if not exe_path.exists():
-        print("❌ Expected exe not found at:", exe_path)
+        print("[ERROR] Expected exe not found at:", exe_path)
         sys.exit(1)
 
-    print("\n✅ Build succeeded! Created executable at:", exe_path)
+    print("\n[OK] Build succeeded! Created executable at:", exe_path)
     file_size_mb = round(exe_path.stat().st_size / (1024 * 1024), 2)
-    print(f"📦 Executable Size: {file_size_mb} MB")
+    print(f"[INFO] Executable Size: {file_size_mb} MB")
 
     # Create ZIP archive for release
     zip_path = ROOT_DIR / "dist" / "telegram-simulator-windows-x64.zip"
-    print(f"📦 Creating release archive: {zip_path.name}...")
+    print(f"[INFO] Creating release archive: {zip_path.name}...")
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
         zf.write(exe_path, arcname="telegram-simulator.exe")
         # Add quick start readme for release
@@ -97,7 +97,7 @@ def build():
         zf.writestr("README_RELEASE.txt", readme_text)
 
     zip_size_mb = round(zip_path.stat().st_size / (1024 * 1024), 2)
-    print(f"🎉 Successfully created release package: {zip_path} ({zip_size_mb} MB)")
+    print(f"[OK] Successfully created release package: {zip_path} ({zip_size_mb} MB)")
 
 if __name__ == "__main__":
     build()
