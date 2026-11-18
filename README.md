@@ -10,6 +10,10 @@
   <a href="#-english">English 🇬🇧</a>
 </p>
 
+<p align="center">
+  <img src="docs/images/gui_preview.png" alt="Telegram Simulator Web UI" width="880">
+</p>
+
 ---
 
 ## 🇷🇺 Русский
