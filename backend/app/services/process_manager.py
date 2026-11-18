@@ -89,7 +89,8 @@ class ProcessManager:
                     raise ValueError(f"Process for bot {bot_id} is already running (PID: {existing.pid})")
 
             # Validate and resolve file path
-            file_p = Path(file_path)
+            clean_path = file_path.strip().strip('"').strip("'")
+            file_p = Path(clean_path)
             if not file_p.is_absolute():
                 candidate = settings.root_dir / file_p
                 if candidate.exists():

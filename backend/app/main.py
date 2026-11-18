@@ -77,6 +77,9 @@ async def health_check():
 
 # Serve built frontend if dist exists
 dist_dir = settings.root_dir / "frontend" / "dist"
+if not dist_dir.exists() and hasattr(sys, "_MEIPASS"):
+    dist_dir = Path(sys._MEIPASS) / "frontend" / "dist"
+
 if dist_dir.exists():
     app.mount("/", StaticFiles(directory=str(dist_dir), html=True), name="frontend")
 

@@ -68,12 +68,12 @@ http://127.0.0.1:8000/bot<TOKEN>/<METHOD_NAME>
         "chat": {
           "id": 12345,
           "type": "private",
-          "first_name": "Дмитрий"
+          "first_name": "Алексей"
         },
         "from": {
           "id": 12345,
           "is_bot": false,
-          "first_name": "Дмитрий"
+          "first_name": "Алексей"
         },
         "text": "/start"
       }

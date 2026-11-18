@@ -34,10 +34,10 @@ class UserService:
         if not users:
             # Create a default user if none exist
             default_user = User(
-                id=12345678,
-                first_name="Дмитрий",
-                last_name="Разработчик",
-                username="dmitry_dev",
+                id=10001,
+                first_name="Студент",
+                last_name="Python",
+                username="student_dev",
                 avatar="",
                 is_bot=False
             )

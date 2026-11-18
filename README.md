@@ -31,7 +31,10 @@
    - [Как работает симуляция и концепция подмены](#как-работает-симуляция-и-концепция-подмены)
    - [Подмена в pyTelegramBotAPI (telebot)](#1-подмена-в-pytelegrambotapi-telebot)
    - [Подмена в aiogram 3](#2-подмена-в-aiogram-3)
-5. [Быстрый старт и пошаговое руководство](#быстрый-старт-и-пошаговое-руководство)
+5. [Варианты развертывания и быстрый старт](#варианты-развертывания-и-быстрый-старт)
+   - [Вариант А: Запуск через автономный .exe для Windows (без Python и Node.js)](#вариант-а-запуск-через-автономный-exe-для-windows-без-python-и-nodejs)
+   - [Вариант Б: Запуск из исходного кода](#вариант-б-запуск-из-исходного-кода)
+   - [Сборка собственного .exe через PyInstaller](#сборка-собственного-exe-через-pyinstaller)
 6. [Полная инструкция: как создать своего бота и открыть его через веб](#полная-инструкция-как-создать-своего-бота-и-открыть-его-через-веб)
 7. [Поддерживаемые методы Bot API](#поддерживаемые-методы-bot-api)
 8. [Тестирование](#тестирование)
@@ -303,14 +306,31 @@ if __name__ == "__main__":
 
 ---
 
-### Быстрый старт и пошаговое руководство
+### Варианты развертывания и быстрый старт
 
-#### 1. Установка зависимостей Backend
+#### Вариант А: Запуск через автономный .exe для Windows (без Python и Node.js) ⚡
+
+Если вам или вашим ученикам нужно просто запустить Telegram Simulator без установки Python, Node.js, компиляторов и зависимостей:
+
+1. Перейдите в раздел **[GitHub Releases](https://github.com/rillside/telegram-bot-simulator/releases)**.
+2. Скачайте архив **`telegram-simulator-windows-x64.zip`** (или напрямую `telegram-simulator.exe`).
+3. Распакуйте архив в любую удобную папку и запустите **`telegram-simulator.exe`**.
+4. Программа автоматически запустит локальный сервер и откроет веб-интерфейс в вашем браузере по адресу:  
+   👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
+5. Все базы данных, история чатов и загруженные файлы будут автоматически сохраняться в папку `data/` рядом с `.exe` файлом.
+
+---
+
+#### Вариант Б: Запуск из исходного кода
+
+Если вы хотите запустить проект в режиме разработки или модифицировать его:
+
+##### 1. Установка зависимостей Backend
 ```bash
 pip install -r backend/requirements.txt
 ```
 
-#### 2. Сборка Frontend
+##### 2. Сборка Frontend SPA
 ```bash
 cd frontend
 npm install
@@ -319,14 +339,23 @@ cd ..
 ```
 *(Собранный статический бандл раздается сервером FastAPI автоматически).*
 
-#### 3. Запуск платформы
+##### 3. Запуск платформы
 ```bash
 python run.py
 ```
 *(или `python backend/app/main.py`).*
 
-После запуска откройте браузер:
+После запуска откройте браузер:  
 👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
+
+---
+
+#### Сборка собственного .exe через PyInstaller
+Вы можете самостоятельно пересобрать автономный Windows-исполняемый файл одной командой:
+```bash
+python scripts/build_exe.py
+```
+Готовый бинарник `telegram-simulator.exe` и релизный ZIP-архив появятся в папке `dist/`.
 
 ---
 
@@ -547,7 +576,10 @@ telegram-simulator/
    - [How the Simulation & Redirection Works](#how-the-simulation--redirection-works)
    - [Redirection in pyTelegramBotAPI (telebot)](#1-redirection-in-pytelegrambotapi-telebot)
    - [Redirection in aiogram 3](#2-redirection-in-aiogram-3)
-5. [Quick Start & Step-by-Step Guide](#quick-start--step-by-step-guide)
+5. [Deployment Options & Quick Start](#deployment-options--quick-start)
+   - [Option A: Standalone Windows .exe (No Python or Node.js required)](#option-a-standalone-windows-exe-no-python-or-nodejs-required)
+   - [Option B: Running from Source Code](#option-b-running-from-source-code)
+   - [Building Standalone .exe with PyInstaller](#building-standalone-exe-with-pyinstaller)
 6. [Full Guide: Creating, Running & Opening Your Bot in the Web UI](#full-guide-creating-running--opening-your-bot-in-the-web-ui)
 7. [Supported Bot API Methods](#supported-bot-api-methods)
 8. [Testing](#testing-1)
@@ -819,14 +851,31 @@ if __name__ == "__main__":
 
 ---
 
-### Quick Start & Step-by-Step Guide
+### Deployment Options & Quick Start
 
-#### 1. Install Backend Dependencies
+#### Option A: Standalone Windows .exe (No Python or Node.js required) ⚡
+
+If you or your students want to run Telegram Simulator without installing Python, Node.js, package managers, or compiler toolchains:
+
+1. Go to the **[GitHub Releases](https://github.com/rillside/telegram-bot-simulator/releases)** section.
+2. Download **`telegram-simulator-windows-x64.zip`** (or `telegram-simulator.exe` directly).
+3. Extract the archive into any folder and run **`telegram-simulator.exe`**.
+4. The application automatically starts the local backend and launches your default browser:  
+   👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
+5. All databases, chat histories, and uploads will be persistently saved into a `data/` folder next to the `.exe` file.
+
+---
+
+#### Option B: Running from Source Code
+
+If you prefer developing, modifying, or extending the simulator codebase:
+
+##### 1. Install Backend Dependencies
 ```bash
 pip install -r backend/requirements.txt
 ```
 
-#### 2. Build Frontend
+##### 2. Build Frontend SPA
 ```bash
 cd frontend
 npm install
@@ -835,14 +884,23 @@ cd ..
 ```
 *(The prebuilt static bundle is automatically served by the FastAPI application).*
 
-#### 3. Launch Platform
+##### 3. Launch Platform
 ```bash
 python run.py
 ```
 *(or `python backend/app/main.py`).*
 
-After launch, open your browser:
+After launch, open your browser:  
 👉 **[http://127.0.0.1:8000](http://127.0.0.1:8000)**
+
+---
+
+#### Building Standalone .exe with PyInstaller
+You can compile your own standalone Windows binary with a single command:
+```bash
+python scripts/build_exe.py
+```
+The compiled `telegram-simulator.exe` and release ZIP package will appear in the `dist/` directory.
 
 ---
 
