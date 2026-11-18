@@ -7,7 +7,7 @@ from telebot.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemo
 
 apihelper.API_URL = "http://127.0.0.1:8000/bot{0}/{1}"
 
-TOKEN = "1:dK-NpGYa1RmUKZcI_5GKbzOfFdfHWX1fpwA"
+TOKEN = "YOUR_TOKEN"
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=["start"])

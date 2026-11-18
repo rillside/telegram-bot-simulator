@@ -7,7 +7,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 apihelper.API_URL = "http://127.0.0.1:8000/bot{0}/{1}"
 
-TOKEN = "1:ABxQGCi6k5lCttQZplU2t82hs61JI1JJqyV"
+TOKEN = "YOUR_TOKEN"
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=["start", "menu"])

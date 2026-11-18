@@ -8,7 +8,7 @@ from aiogram.client.telegram import TelegramAPIServer
 from aiogram.filters import CommandStart
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 
-TOKEN = "1:dK-NpGYa1RmUKZcI_5GKbzOfFdfHWX1fpwA"
+TOKEN = "YOUR_TOKEN"
 
 API = TelegramAPIServer.from_base("http://127.0.0.1:8000")
 session = AiohttpSession(api=API)

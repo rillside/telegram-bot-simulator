@@ -12,6 +12,12 @@ ENV/
 dist/
 build/
 .pytest_cache/
+*.log
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
 
 # Node
 node_modules/
