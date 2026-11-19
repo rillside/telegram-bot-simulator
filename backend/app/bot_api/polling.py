@@ -6,9 +6,21 @@ class BotQueue:
     def __init__(self, bot_id: int):
         self.bot_id = bot_id
         self.updates: List[Dict[str, Any]] = []
-        self.event = asyncio.Event()
-        self.lock = asyncio.Lock()
+        self._event: Optional[asyncio.Event] = None
+        self._lock: Optional[asyncio.Lock] = None
         self.is_stopped = False
+
+    @property
+    def event(self) -> asyncio.Event:
+        if self._event is None:
+            self._event = asyncio.Event()
+        return self._event
+
+    @property
+    def lock(self) -> asyncio.Lock:
+        if self._lock is None:
+            self._lock = asyncio.Lock()
+        return self._lock
 
     def enqueue(self, update: Dict[str, Any]):
         self.updates.append(update)
@@ -29,10 +41,16 @@ class BotQueue:
 class UpdateQueueManager:
     def __init__(self):
         self._queues: Dict[int, BotQueue] = {}
-        self._global_lock = asyncio.Lock()
+        self._global_lock: Optional[asyncio.Lock] = None
+
+    @property
+    def global_lock(self) -> asyncio.Lock:
+        if self._global_lock is None:
+            self._global_lock = asyncio.Lock()
+        return self._global_lock
 
     async def get_queue(self, bot_id: int) -> BotQueue:
-        async with self._global_lock:
+        async with self.global_lock:
             if bot_id not in self._queues:
                 self._queues[bot_id] = BotQueue(bot_id)
             return self._queues[bot_id]
@@ -64,11 +82,16 @@ class UpdateQueueManager:
             if offset is not None:
                 queue.acknowledge(offset)
 
+            # If a client calls get_updates, polling is active; reset any previous stopped flag
+            queue.is_stopped = False
+
             start_time = time.time()
             limit = max(1, min(limit, 100))
 
             while True:
+                # If stopped while waiting
                 if queue.is_stopped:
+                    queue.is_stopped = False
                     return []
 
                 # Filter updates
@@ -78,7 +101,6 @@ class UpdateQueueManager:
                     if offset is not None and uid < offset:
                         continue
                     if allowed_updates:
-                        # Check if any allowed key exists in update (e.g. "message", "callback_query")
                         keys = set(u.keys()) - {"update_id"}
                         if not any(k in allowed_updates for k in keys):
                             continue
@@ -88,6 +110,7 @@ class UpdateQueueManager:
                     return filtered[:limit]
 
                 if timeout <= 0:
+                    await asyncio.sleep(0.05)
                     return []
 
                 elapsed = time.time() - start_time

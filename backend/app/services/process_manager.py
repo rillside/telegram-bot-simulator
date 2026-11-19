@@ -2,6 +2,7 @@ import asyncio
 import os
 import sys
 import time
+import shutil
 import subprocess
 import threading
 from datetime import datetime, timezone
@@ -80,6 +81,16 @@ class ProcessManager:
             return []
         return list(mp.logs)
 
+    def _get_python_executable(self) -> str:
+        """Returns the Python interpreter path, accounting for PyInstaller bundled executable."""
+        if getattr(sys, "frozen", False) or hasattr(sys, "_MEIPASS"):
+            for candidate in ["python", "python3", "py"]:
+                found = shutil.which(candidate)
+                if found:
+                    return found
+            return "python"
+        return sys.executable
+
     async def start_process(self, bot_id: int, file_path: str, work_dir: Optional[str] = None) -> ManagedProcess:
         async with self._lock:
             # Check existing
@@ -135,8 +146,10 @@ class ProcessManager:
 
                 loop = asyncio.get_running_loop()
 
+                python_bin = self._get_python_executable()
+
                 mp.process = subprocess.Popen(
-                    [sys.executable, "-u", str(resolved_path)],
+                    [python_bin, "-u", str(resolved_path)],
                     cwd=mp.work_dir,
                     env=env,
                     stdout=subprocess.PIPE,

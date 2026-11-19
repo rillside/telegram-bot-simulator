@@ -162,10 +162,10 @@ export const App: React.FC = () => {
         );
       } else if (type === 'api_request') {
         const req: ApiRequestLog = data;
-        setApiRequests((prev) => [req, ...prev]);
+        setApiRequests((prev) => [req, ...prev].slice(0, 200));
       } else if (type === 'update_event') {
         const upd: UpdateLog = data;
-        setUpdates((prev) => [upd, ...prev]);
+        setUpdates((prev) => [upd, ...prev].slice(0, 200));
       } else if (type === 'callback_query_answered') {
         const { text } = data;
         if (text) {

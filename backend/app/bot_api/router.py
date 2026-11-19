@@ -95,35 +95,35 @@ async def telegram_bot_api_endpoint(
         execution_time_ms = round((time.time() - start_time) * 1000, 2)
         response_data = ok_response(handler_result)
 
-        # Log for API Inspector
-        # We sanitize params for logging (hide massive files)
-        sanitized_params = {k: (f"<file: {v.filename}>" if hasattr(v, "filename") else v) for k, v in params.items()}
-        
-        api_req = ApiRequest(
-            bot_id=bot.id,
-            method=request.method,
-            endpoint=method_name,
-            params=sanitized_params,
-            response_status=200,
-            response_body=response_data,
-            execution_time_ms=execution_time_ms
-        )
-        db.add(api_req)
-        await db.commit()
-        await db.refresh(api_req)
+        # Log for API Inspector (skip empty getUpdates polling heartbeats to avoid flooding DB and UI)
+        if method_name != "getUpdates" or handler_result:
+            sanitized_params = {k: (f"<file: {v.filename}>" if hasattr(v, "filename") else v) for k, v in params.items()}
+            
+            api_req = ApiRequest(
+                bot_id=bot.id,
+                method=request.method,
+                endpoint=method_name,
+                params=sanitized_params,
+                response_status=200,
+                response_body=response_data,
+                execution_time_ms=execution_time_ms
+            )
+            db.add(api_req)
+            await db.commit()
+            await db.refresh(api_req)
 
-        # Broadcast via WebSocket for API Inspector
-        await event_bus.broadcast("api_request", {
-            "id": api_req.id,
-            "bot_id": bot.id,
-            "method": request.method,
-            "endpoint": method_name,
-            "params": sanitized_params,
-            "response_status": 200,
-            "response_body": response_data,
-            "execution_time_ms": execution_time_ms,
-            "created_at": api_req.created_at.isoformat()
-        })
+            # Broadcast via WebSocket for API Inspector
+            await event_bus.broadcast("api_request", {
+                "id": api_req.id,
+                "bot_id": bot.id,
+                "method": request.method,
+                "endpoint": method_name,
+                "params": sanitized_params,
+                "response_status": 200,
+                "response_body": response_data,
+                "execution_time_ms": execution_time_ms,
+                "created_at": api_req.created_at.isoformat()
+            })
 
         return response_data
 
