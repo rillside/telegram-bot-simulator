@@ -6,6 +6,39 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/rillside/telegram-bot-simulator/releases">
+    <img src="https://img.shields.io/badge/WINDOWS-STANDALONE%20EXE-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows Standalone Exe" />
+  </a>
+  <a href="https://github.com/rillside/telegram-bot-simulator/releases">
+    <img src="https://img.shields.io/badge/GITHUB%20RELEASE-v1.0.1-7952e8?style=for-the-badge&logo=github&logoColor=white" alt="Release" />
+  </a>
+  <a href="#тестирование">
+    <img src="https://img.shields.io/badge/TESTS-100%25%20PASSING-success?style=for-the-badge&logo=pytest&logoColor=white" alt="Tests" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/LICENSE-MIT-22c55e?style=for-the-badge" alt="License" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://www.python.org/">
+    <img src="https://img.shields.io/badge/PYTHON-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  </a>
+  <a href="https://fastapi.tiangolo.com/">
+    <img src="https://img.shields.io/badge/FASTAPI-BACKEND-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  </a>
+  <a href="https://react.dev/">
+    <img src="https://img.shields.io/badge/REACT%2019-TELEGRAM%20UI-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19" />
+  </a>
+  <a href="https://pypi.org/project/pyTelegramBotAPI/">
+    <img src="https://img.shields.io/badge/TELEBOT-READY-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="telebot" />
+  </a>
+  <a href="https://docs.aiogram.dev/">
+    <img src="https://img.shields.io/badge/AIOGRAM%203-READY-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="aiogram 3" />
+  </a>
+</p>
+
+<p align="center">
   <a href="#-русский">Русский 🇷🇺</a> •
   <a href="#-english">English 🇬🇧</a>
 </p>
@@ -176,6 +209,17 @@
 
 ### Технологический стек
 
+<p align="left">
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Python%203.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/React%2019-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite" />
+  <img src="https://img.shields.io/badge/Pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" alt="Pytest" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+</p>
+
 - **Backend**: Python 3.12+, FastAPI, Uvicorn, Pydantic v2, SQLAlchemy 2.x (Asyncio + aiosqlite), SQLite, WebSockets, httpx.
 - **Frontend**: React 19, TypeScript, Vite, Tailwind CSS, Lucide React.
 - **Process Management**: `subprocess.Popen` с неблокирующими потоками чтения вывода и потокобезопасной передачей событий через `asyncio.run_coroutine_threadsafe`.
@@ -309,6 +353,12 @@ if __name__ == "__main__":
 ### Варианты развертывания и быстрый старт
 
 #### Вариант А: Запуск через автономный .exe для Windows (без Python и Node.js) ⚡
+
+<p align="left">
+  <a href="https://github.com/rillside/telegram-bot-simulator/releases">
+    <img src="https://img.shields.io/badge/СКАЧАТЬ%20ДЛЯ%20WINDOWS-TELEGRAM--SIMULATOR.EXE-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Скачать telegram-simulator.exe" />
+  </a>
+</p>
 
 Если вам или вашим ученикам нужно просто запустить Telegram Simulator без установки Python, Node.js, компиляторов и зависимостей:
 
@@ -721,6 +771,17 @@ Built with React 19, TypeScript, and Tailwind CSS following a clean component ar
 
 ### Technology Stack
 
+<p align="left">
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Python%203.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/React%2019-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite" />
+  <img src="https://img.shields.io/badge/Pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" alt="Pytest" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+</p>
+
 - **Backend**: Python 3.12+, FastAPI, Uvicorn, Pydantic v2, SQLAlchemy 2.x (Asyncio + aiosqlite), SQLite, WebSockets, httpx.
 - **Frontend**: React 19, TypeScript, Vite, Tailwind CSS, Lucide React.
 - **Process Management**: `subprocess.Popen` with non-blocking stream listener threads and thread-safe event emission via `asyncio.run_coroutine_threadsafe`.
@@ -854,6 +915,12 @@ if __name__ == "__main__":
 ### Deployment Options & Quick Start
 
 #### Option A: Standalone Windows .exe (No Python or Node.js required) ⚡
+
+<p align="left">
+  <a href="https://github.com/rillside/telegram-bot-simulator/releases">
+    <img src="https://img.shields.io/badge/DOWNLOAD%20FOR%20WINDOWS-TELEGRAM--SIMULATOR.EXE-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Download telegram-simulator.exe" />
+  </a>
+</p>
 
 If you or your students want to run Telegram Simulator without installing Python, Node.js, package managers, or compiler toolchains:
 
